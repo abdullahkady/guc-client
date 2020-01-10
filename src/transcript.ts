@@ -1,6 +1,7 @@
 import puppeteer, { Browser, Page } from 'puppeteer';
 import { TRANSCRIPT_URL } from './constants';
 import { TranscriptYear, TranscriptSemester } from './types';
+import { createSlimPage } from './utils';
 
 const crawlYearPage = (page: Page): Promise<Array<TranscriptSemester>> => {
   return page.$$eval('table [bordercolor="gainsboro"]', (elements: any) =>
@@ -41,7 +42,7 @@ const extractYear = async (
   loginInfo: { username: string; password: string }
 ): Promise<TranscriptYear> => {
   const context = await browser.createIncognitoBrowserContext();
-  const page = await context.newPage();
+  const page = await createSlimPage(context);
   await page.authenticate(loginInfo);
   await page.goto(TRANSCRIPT_URL);
   await page.select('#stdYrLst', value);
@@ -68,7 +69,7 @@ const getTranscript = async (
     browser = await puppeteer.launch({ headless: false });
   }
 
-  const page = await browser.newPage();
+  const page = await createSlimPage(browser);
   await page.authenticate({ username, password });
   await page.goto(TRANSCRIPT_URL);
   const years = await page.$$eval(
