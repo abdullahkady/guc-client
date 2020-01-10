@@ -5,3 +5,4 @@ export const LOGIN = {
   password: process.env.GUC_PASSWORD
 };
 export const TRANSCRIPT_URL = 'http://student.guc.edu.eg/external/student/grade/Transcript.aspx';
+export const GRADES_URL = 'http://student.guc.edu.eg/external/student/grade/CheckGrade.aspx';
