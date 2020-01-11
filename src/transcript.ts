@@ -47,8 +47,8 @@ const extractYear = async (
   await page.goto(TRANSCRIPT_URL);
   await page.select('#stdYrLst', value);
   // Since the select fires a request, we need to wait for the response to render
-  // This is just a text displaying the student's name in the resulting page.
-  await page.waitForSelector('#stdNmLbl');
+  // This is just a text displaying the date in the resulting page.
+  await page.waitForSelector('#dtLbl');
   const semesters = await crawlYearPage(page);
   await context.close();
 
