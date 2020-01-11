@@ -5,9 +5,17 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "start": "npm run build && node dist/index.js",
-    "build": "rimraf dist && tsc",
+    "start": "npm run build && node lib/index.js",
+    "build": "rimraf lib && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/AbdullahKady/guc-api",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdullahKady/guc-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AbdullahKady/guc-api/issues"
   },
   "author": "Abdullah Elkady <abdullahkady@gmail.com>",
   "license": "MIT",

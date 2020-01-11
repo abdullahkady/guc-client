@@ -1,5 +1,5 @@
 .env
-dist/
+lib/
 output/
 # Logs
 logs
