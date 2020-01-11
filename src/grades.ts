@@ -1,4 +1,4 @@
-import puppeteer, { Browser, Page } from 'puppeteer';
+import { Browser, Page } from 'puppeteer';
 import { GRADES_URL } from './constants';
 import { CourseWorkGrades, MidtermGrade, CourseWorkEntry } from './types';
 import { createSlimPage } from './utils';
@@ -54,15 +54,8 @@ const extractCourseWorkEntries = async (page: Page): Promise<CourseWorkEntry[]> 
 
 const getGrades = async (
   { username, password }: { username: string; password: string },
-  browser?: Browser
+  browser: Browser
 ): Promise<{ courseWork: CourseWorkGrades[]; midterms: MidtermGrade[] }> => {
-  let browserCreated = false;
-
-  if (!browser) {
-    browserCreated = true;
-    browser = await puppeteer.launch({ headless: false });
-  }
-
   const context = await browser.createIncognitoBrowserContext();
   const page = await createSlimPage(context);
   await page.authenticate({ username, password });
@@ -96,10 +89,6 @@ const getGrades = async (
       };
     })
   );
-
-  if (browserCreated) {
-    browser.close();
-  }
 
   return {
     courseWork,

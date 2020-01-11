@@ -1,4 +1,4 @@
-import puppeteer, { Browser, Page } from 'puppeteer';
+import { Browser, Page } from 'puppeteer';
 import { TRANSCRIPT_URL } from './constants';
 import { TranscriptYear, TranscriptSemester } from './types';
 import { createSlimPage } from './utils';
@@ -60,15 +60,8 @@ const extractYear = async (
 
 const getTranscript = async (
   { username, password }: { username: string; password: string },
-  browser?: Browser
+  browser: Browser
 ): Promise<Array<TranscriptYear>> => {
-  let browserCreated = false;
-
-  if (!browser) {
-    browserCreated = true;
-    browser = await puppeteer.launch({ headless: false });
-  }
-
   const page = await createSlimPage(browser);
   await page.authenticate({ username, password });
   await page.goto(TRANSCRIPT_URL);
@@ -81,10 +74,6 @@ const getTranscript = async (
   const promises = years.map(year => extractYear(browser, year, { username, password }));
 
   const result = (await Promise.all(promises)).filter(({ semesters }) => semesters.length > 0);
-
-  if (browserCreated) {
-    browser.close();
-  }
 
   return result;
 };
