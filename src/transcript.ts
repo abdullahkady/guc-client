@@ -13,23 +13,21 @@ const crawlYearPage = (page: Page): Promise<Array<TranscriptSemester>> => {
         const rows = [...table.firstElementChild.children];
         const name = rows[0].innerText.trim();
         const accumulatingRow = [...rows.pop().children];
-        const gpa = accumulatingRow[2].innerText.trim();
-        const creditHours = accumulatingRow.pop().innerText.trim();
+        const gpa = Number(accumulatingRow[2].innerText.trim());
 
         // Ignore the first 2 (headers)
         const courses = rows.slice(2).map(courseRow => ({
           name: courseRow.children[1].innerText.trim(),
           grade: {
-            numeric: courseRow.children[2].innerText.trim(),
+            numeric: Number(courseRow.children[2].innerText.trim()),
             letter: courseRow.children[3].innerText.trim()
           },
-          creditHours: courseRow.children[3].innerText.trim()
+          creditHours: Number(courseRow.children[4].innerText.trim())
         }));
 
         return {
           name,
           gpa,
-          creditHours,
           courses
         };
       })

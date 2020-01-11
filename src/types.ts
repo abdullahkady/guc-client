@@ -1,16 +1,15 @@
 interface TranscriptCourse {
   name: string;
   grade: {
-    numeric: string;
+    numeric: number;
     letter: string;
   };
-  creditHours: string;
+  creditHours: number;
 }
 
 export interface TranscriptSemester {
   name: string;
-  gpa: string;
-  creditHours: string;
+  gpa: number;
   courses: TranscriptCourse;
 }
 
