@@ -1,22 +1,15 @@
 {
-  "name": "guc-api",
+  "name": "guc-client",
   "version": "1.0.0",
   "description": "A programmatic API for the GUC system (students).",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "npm run build && node lib/index.js",
-    "build": "rimraf lib && tsc",
+    "start": "npm run build && node dist/index.js",
+    "build": "rimraf dist && tsc",
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/AbdullahKady/guc-api",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AbdullahKady/guc-api.git"
-  },
-  "bugs": {
-    "url": "https://github.com/AbdullahKady/guc-api/issues"
-  },
+  "homepage": "https://github.com/AbdullahKady/guc-client",
   "author": "Abdullah Elkady <abdullahkady@gmail.com>",
   "license": "MIT",
   "devDependencies": {
@@ -33,5 +26,16 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "puppeteer": "^2.0.0"
+  },
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdullahKady/guc-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AbdullahKady/guc-client/issues"
   }
 }
