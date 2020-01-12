@@ -1,1 +1,1 @@
-# guc-api
+# guc-client
