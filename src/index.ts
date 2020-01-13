@@ -1,5 +1,6 @@
 import puppeteer, { Browser } from 'puppeteer';
 import { HOMEPAGE_URL } from './constants';
+import { chromiumExecutablePath } from './config';
 import { getTranscript } from './services/transcript';
 import { getGrades } from './services/grades';
 import { createSlimPage } from './utils';
@@ -19,7 +20,7 @@ export default class GucClient {
   ): Promise<GucClient> => {
     const instance = new GucClient();
     if (!browser) {
-      browser = await puppeteer.launch();
+      browser = await puppeteer.launch({ executablePath: chromiumExecutablePath });
     }
     instance.browser = browser;
 
