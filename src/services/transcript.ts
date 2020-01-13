@@ -1,7 +1,7 @@
 import { Browser, Page } from 'puppeteer';
-import { TRANSCRIPT_URL } from './constants';
+import { TRANSCRIPT_URL } from '../constants';
 import { TranscriptYear, TranscriptSemester } from './types';
-import { createSlimPage } from './utils';
+import { createSlimPage } from '../utils';
 
 const crawlYearPage = (page: Page): Promise<Array<TranscriptSemester>> => {
   return page.$$eval('table [bordercolor="gainsboro"]', (elements: any) =>

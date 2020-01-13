@@ -1,7 +1,7 @@
 import { Browser, Page } from 'puppeteer';
-import { GRADES_URL } from './constants';
+import { GRADES_URL } from '../constants';
 import { CourseWorkGrades, MidtermGrade, CourseWorkEntry } from './types';
-import { createSlimPage } from './utils';
+import { createSlimPage } from '../utils';
 
 const extractMidtermGrades = (page: Page): Promise<MidtermGrade[]> =>
   page.$eval('#midDg', table =>

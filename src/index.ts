@@ -1,10 +1,10 @@
 import puppeteer, { Browser } from 'puppeteer';
 import { HOMEPAGE_URL } from './constants';
-import { getTranscript } from './transcript';
-import { getGrades } from './grades';
+import { getTranscript } from './services/transcript';
+import { getGrades } from './services/grades';
 import { createSlimPage } from './utils';
 import { InvalidCredentials, SystemException, UnknownSystemException } from './errors';
-import { TranscriptYear, CourseWorkGrades, MidtermGrade } from './types';
+import { TranscriptYear, CourseWorkGrades, MidtermGrade } from './services/types';
 
 export default class GucClient {
   private credentials: { username: string; password: string };
