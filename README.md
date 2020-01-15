@@ -198,6 +198,7 @@ If you would like to contribute, feel free to fork the repo, and open a PR. Howe
 <a href="https://github.com/AbdullahKady/guc-client/blob/master/LICENSE" alt="MIT LICENSE">
     <img src="https://img.shields.io/npm/l/guc-client" />
 </a>
+
 The library is open source under the [MIT License](https://github.com/AbdullahKady/guc-client/blob/master/LICENSE).
 
 DISCLAIMER: This library is in no way legally associated with the GUC. It is simply a personal project for automating day-to-day tasks involving the GUC, by providing a programmatic API.
