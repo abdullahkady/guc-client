@@ -151,6 +151,7 @@ This can be done via a `.env` file for easier configuration.
 ### 4.2 Configuring Puppeteer Options
 
 When creating a client instance, you can provide an optional puppeteer browser instance, this will allow you to set any options you would like to the browser instance (and this can be used to specify the executable path without the use of `env` as mentioned above).
+
 So for example, if you would like to run the library in a non-headless mode (see the browser interaction being rendered), you can run the following:
 
 ```javascript
@@ -178,6 +179,7 @@ Thrown when the provided credentials fail to login. No further data is associate
 ### 5.2 SystemError
 
 Thrown whenever the system faces a handled error (for instance, trying to access a page you are not authorized to).
+
 The error object has the following properties:
 
 - `message`: A string containing the title displayed on the error page
@@ -186,12 +188,14 @@ The error object has the following properties:
 ### 5.2 UnknownSystemError
 
 The error gets thrown whenever the system raises an exception that was not handled (500 on the GUC server basically).
+
 The error object doesn't contain any further metadata, for the sake of privacy, since such errors dump the stacktrace (as of the time of writing this).
 
 ## 6. Contribution
 
-For any feedback or issues, please feel free to open an [issue](https://github.com/AbdullahKady/guc-client/issues), make sure to keep it as detailed as possible.
-If you would like to contribute, feel free to fork the repo, and open a PR. However, please create an issue first with the feature/bug-fix you would like to implement, since it might be in-work already.
+For any feedback or issues, feel free to open an [issue](https://github.com/AbdullahKady/guc-client/issues), make sure to keep it as detailed as possible.
+
+If you would like to contribute, feel free to fork the repo, and open a PR. However, please _create an issue first_ with the feature/bug-fix you would like to implement, since it might be in-work already.
 
 ## 7. License
 
@@ -201,4 +205,4 @@ If you would like to contribute, feel free to fork the repo, and open a PR. Howe
 
 The library is open source under the [MIT License](https://github.com/AbdullahKady/guc-client/blob/master/LICENSE).
 
-DISCLAIMER: This library is in no way legally associated with the GUC. It is simply a personal project for automating day-to-day tasks involving the GUC, by providing a programmatic API.
+DISCLAIMER: This library is in no way legally associated with the GUC. It is simply a personal project for automating day-to-day tasks involving the GUC system.
