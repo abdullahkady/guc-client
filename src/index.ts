@@ -3,8 +3,10 @@ import { HOMEPAGE_URL } from './constants';
 import { chromiumExecutablePath } from './config';
 import { getTranscript } from './services/transcript';
 import { getGrades } from './services/grades';
+import { getSchedule } from './services/schedule';
 import { createSlimPage } from './utils';
 import { InvalidCredentials, SystemError, UnknownSystemError } from './errors';
+import { TranscriptYear, CourseWorkGrades, MidtermGrade, DaySchedule } from './services/types';
 
 export default class GucClient {
   private credentials: { username: string; password: string };
@@ -76,6 +78,10 @@ export default class GucClient {
 
   getGrades(): Promise<{ courseWork: CourseWorkGrades[]; midterms: MidtermGrade[] }> {
     return getGrades(this.credentials, this.browser);
+  }
+
+  getSchedule(): Promise<Array<DaySchedule>> {
+    return getSchedule(this.credentials, this.browser);
   }
 
   /**

@@ -1,3 +1,6 @@
+// ==================================== //
+// ============ Transcript ============ //
+// ==================================== //
 interface TranscriptCourse {
   name: string;
   grade: {
@@ -19,6 +22,7 @@ export interface TranscriptYear {
 }
 
 // ==================================== //
+// ============== Grades ============== //
 // ==================================== //
 
 export interface CourseWorkEntry {
@@ -34,4 +38,21 @@ export interface CourseWorkGrades {
 export interface MidtermGrade {
   courseName: string;
   grade: number;
+}
+
+// ==================================== //
+// ============= Schedule ============= //
+// ==================================== //
+
+interface Slot {
+  period: number;
+  type: string;
+  location: string;
+  course: string;
+  group: string;
+}
+
+export interface DaySchedule {
+  day: 'Saturday' | 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday';
+  slots: Array<Slot | null>;
 }
