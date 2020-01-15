@@ -11,9 +11,10 @@ import { TranscriptYear, CourseWorkGrades, MidtermGrade, DaySchedule } from './s
 class GucClient {
   private credentials: { username: string; password: string };
   private browser: Browser;
+
   /**
-   * Creates a client instance asynchronously, which can throw an error if
-   * invalid credentials are provided, or if the system is down.
+   * A factory that creates a client instance asynchronously, which can throw
+   * an error if invalid credentials are provided, or if the system is down.
    */
   public static create = async (
     credentials: { username: string; password: string },
@@ -52,6 +53,7 @@ class GucClient {
     });
     await page.close();
     if (error) {
+      await this.terminate();
       const { title, message, details } = error;
       if (title === '401 - Unauthorized: Access is denied due to invalid credentials.') {
         throw new InvalidCredentials();
