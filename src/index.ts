@@ -5,7 +5,7 @@ import { getTranscript } from './services/transcript';
 import { getGrades } from './services/grades';
 import { getSchedule } from './services/schedule';
 import { createSlimPage } from './utils';
-import { InvalidCredentials, SystemError, UnknownSystemError } from './errors';
+import { InvalidCredentialsError, SystemError, UnknownSystemError } from './errors';
 import { TranscriptYear, CourseWorkGrades, MidtermGrade, DaySchedule } from './services/types';
 
 class GucClient {
@@ -56,7 +56,7 @@ class GucClient {
       await this.terminate();
       const { title, message, details } = error;
       if (title === '401 - Unauthorized: Access is denied due to invalid credentials.') {
-        throw new InvalidCredentials();
+        throw new InvalidCredentialsError();
       }
 
       if (title === 'The state information is invalid for this page and might be corrupted.') {

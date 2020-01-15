@@ -1,4 +1,4 @@
-export class InvalidCredentials extends Error {
+export class InvalidCredentialsError extends Error {
   constructor() {
     super();
     this.message = 'Credentials provided are invalid';
