@@ -5,17 +5,19 @@ import { createSlimPage } from '../utils';
 
 const extractMidtermGrades = (page: Page): Promise<MidtermGrade[]> =>
   page.$eval('#midDg', table =>
-    [...table.querySelectorAll('tr')].slice(1).map(tr => {
-      const [name, grade] = tr.querySelectorAll('td');
-      return {
-        courseName: name.innerText
-          .split('-')
-          .slice(1)
-          .join('-')
-          .trim(),
-        grade: Number(grade.innerText.trim())
-      };
-    })
+    Array.from(table.querySelectorAll('tr'))
+      .slice(1)
+      .map(tr => {
+        const [name, grade] = tr.querySelectorAll('td');
+        return {
+          courseName: name.innerText
+            .split('-')
+            .slice(1)
+            .join('-')
+            .trim(),
+          grade: Number(grade.innerText.trim())
+        };
+      })
   );
 
 /**
@@ -25,13 +27,13 @@ const extractMidtermGrades = (page: Page): Promise<MidtermGrade[]> =>
 const extractCourseWorkEntries = async (page: Page): Promise<CourseWorkEntry[]> => {
   return page.$eval('#nttTr', t => {
     const result: CourseWorkEntry[] = [];
-    [...t.querySelectorAll('tr')]
+    Array.from(t.querySelectorAll('tr'))
       .slice(1)
-      .filter(row => row.innerText.trim() !== '')
+      .filter(row => row.innerText.trim() !== '') // Only rows with actual grades in them
       .forEach(row => {
-        const [entry, element, gradeResult, professor] = [...row.querySelectorAll('td')].map(e =>
-          e.innerText.trim()
-        );
+        const [entry, element, gradeResult, professor] = Array.from(
+          row.querySelectorAll('td')
+        ).map(e => e.innerText.trim());
         const [grade, maxGrade] = gradeResult.split('/').map(n => Number(n.trim()));
         const currentElement = {
           name: element,

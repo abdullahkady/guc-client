@@ -11,9 +11,9 @@ const crawlYearPage = (page: Page): Promise<Array<TranscriptSemester>> => {
       .filter(table => table.firstElementChild.children.length > 3)
       .map(table => {
         // Spread since the children is a collection, same result as Array.from()
-        const rows = [...table.firstElementChild.children];
+        const rows: any = Array.from(table.firstElementChild.children);
         const name = rows[0].innerText.trim();
-        const accumulatingRow = [...rows.pop().children];
+        const accumulatingRow: any = Array.from(rows.pop().children);
         const gpa = Number(accumulatingRow[2].innerText.trim());
 
         // Ignore the first 2 (headers)
