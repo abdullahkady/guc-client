@@ -8,7 +8,7 @@ import { createSlimPage } from './utils';
 import { InvalidCredentials, SystemError, UnknownSystemError } from './errors';
 import { TranscriptYear, CourseWorkGrades, MidtermGrade, DaySchedule } from './services/types';
 
-export default class GucClient {
+class GucClient {
   private credentials: { username: string; password: string };
   private browser: Browser;
   /**
@@ -92,3 +92,6 @@ export default class GucClient {
     return this.browser.close();
   }
 }
+
+import * as errors from './errors';
+export { GucClient, errors };
