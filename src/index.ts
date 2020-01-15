@@ -4,8 +4,7 @@ import { chromiumExecutablePath } from './config';
 import { getTranscript } from './services/transcript';
 import { getGrades } from './services/grades';
 import { createSlimPage } from './utils';
-import { InvalidCredentials, SystemException, UnknownSystemException } from './errors';
-import { TranscriptYear, CourseWorkGrades, MidtermGrade } from './services/types';
+import { InvalidCredentials, SystemError, UnknownSystemError } from './errors';
 
 export default class GucClient {
   private credentials: { username: string; password: string };
@@ -49,7 +48,7 @@ export default class GucClient {
         details: details ? details.innerText.trim() : null
       };
     });
-
+    await page.close();
     if (error) {
       const { title, message, details } = error;
       if (title === '401 - Unauthorized: Access is denied due to invalid credentials.') {
@@ -57,17 +56,17 @@ export default class GucClient {
       }
 
       if (title === 'The state information is invalid for this page and might be corrupted.') {
-        // True exception from the system (shows the stacktrace \_0_/)
-        throw new UnknownSystemException();
+        // True error from the system (shows the stacktrace \_0_/)
+        throw new UnknownSystemError();
       }
 
       if (message && details) {
-        throw new SystemException(message, details);
+        throw new SystemError(message, details);
       }
-      throw new UnknownSystemException();
+      throw new UnknownSystemError();
     }
 
-    // Credentials only assigned if the login was successful (ie no exception thrown).
+    // Credentials only assigned if the login was successful (ie no error thrown).
     this.credentials = credentials;
   }
 

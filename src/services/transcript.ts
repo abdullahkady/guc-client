@@ -2,6 +2,7 @@ import { Browser, Page } from 'puppeteer';
 import { TRANSCRIPT_URL } from '../constants';
 import { TranscriptYear, TranscriptSemester } from './types';
 import { createSlimPage } from '../utils';
+import { EvaluationRequiredError } from './errors';
 
 const crawlYearPage = (page: Page): Promise<Array<TranscriptSemester>> => {
   return page.$$eval('table [bordercolor="gainsboro"]', (elements: any) =>
@@ -63,6 +64,16 @@ const getTranscript = async (
   const page = await createSlimPage(browser);
   await page.authenticate({ username, password });
   await page.goto(TRANSCRIPT_URL);
+  if (await page.$eval('select', (element: any) => element.disabled)) {
+    const { url, courses } = await page.evaluate(() => ({
+      url: document.querySelector('a').href,
+      courses: (document.querySelector('#msgLbl2') as HTMLSpanElement).innerText
+        .split('\n')
+        .slice(1, -1)
+    }));
+    throw new EvaluationRequiredError(url, courses);
+  }
+
   const years = await page.$$eval(
     'option',
     nodes =>

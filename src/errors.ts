@@ -5,7 +5,7 @@ export class InvalidCredentials extends Error {
   }
 }
 
-export class SystemException extends Error {
+export class SystemError extends Error {
   details: string;
   constructor(message: string, details: string) {
     super();
@@ -14,9 +14,11 @@ export class SystemException extends Error {
   }
 }
 
-export class UnknownSystemException extends Error {
+export class UnknownSystemError extends Error {
   constructor() {
     super();
-    this.message = 'The GUC system experienced an unhandled exception';
+    this.message = 'The GUC system experienced an unhandled error';
   }
 }
+
+export * from './services/errors';
