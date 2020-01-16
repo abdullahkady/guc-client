@@ -1,21 +1,11 @@
 # GUC Client
 
-A [node](http://nodejs.org) library that provides a programmatic API for GUC students, implementing the functionality of the admin system (currently for students).
+[![NPM Version](https://img.shields.io/npm/v/guc-client.svg)](https://npmjs.org/package/guc-client)
+[![NPM Downloads](https://img.shields.io/npm/dm/guc-client.svg)](https://npmjs.org/package/guc-client)
+[![LICENSE](https://img.shields.io/npm/l/guc-client)](https://github.com/AbdullahKady/guc-client/blob/master/LICENSE)
+[![ISSUES](https://img.shields.io/github/issues/AbdullahKady/guc-client)](https://github.com/AbdullahKady/guc-client/issues)
 
-<p align="center">
-    <a href="https://npmjs.org/package/guc-client" alt="NPM">
-        <img src="https://img.shields.io/npm/v/guc-client.svg" />
-    </a>
-    <a href="https://npmjs.org/package/guc-client" alt="NPM Downloads">
-        <img src="https://img.shields.io/npm/dm/guc-client.svg" />
-    </a>
-    <a href="https://github.com/AbdullahKady/guc-client/blob/master/LICENSE" alt="MIT LICENSE">
-        <img src="https://img.shields.io/npm/l/guc-client" />
-    </a>
-    <a href="https://github.com/AbdullahKady/guc-client/blob/master/LICENSE" alt="Open Issues">
-        <img src="https://img.shields.io/github/issues/AbdullahKady/guc-client" />
-    </a>
-</p>
+A [node](http://nodejs.org) library that provides a programmatic API for GUC students, implementing the functionality of the admin system (currently for students).
 
 <!-- TOC depthFrom:2 -->
 
@@ -212,9 +202,7 @@ If you would like to contribute, feel free to fork the repo, and open a PR. Howe
 
 ## 7. License
 
-<a href="https://github.com/AbdullahKady/guc-client/blob/master/LICENSE" alt="MIT LICENSE">
-    <img src="https://img.shields.io/npm/l/guc-client" />
-</a>
+[![LICENSE](https://img.shields.io/npm/l/guc-client)](https://github.com/AbdullahKady/guc-client/blob/master/LICENSE)
 
 The library is open source under the [MIT License](https://github.com/AbdullahKady/guc-client/blob/master/LICENSE).
 
