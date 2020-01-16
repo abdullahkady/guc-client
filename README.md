@@ -110,15 +110,122 @@ A factory function that **asynchronously** creates a client instance (given the 
 
 #### 3.2.2 GucClient.getTranscript()
 
-Returns the full transcript (all available years) for the logged in student. The function may throw `EvaluationRequiredError` if the GUC system is requiring evaluation before showing the transcript.
+Returns the full transcript (an array of years) for the logged in student. The function may throw `EvaluationRequiredError` if the GUC system is requiring evaluation before showing the transcript.
+
+<details>
+<summary>Example return value, tap to expand</summary>
+
+An array of years as the following
+
+```json
+[
+  {
+    "year": "2015-2016",
+    "semesters": [
+      {
+        "name": "Winter 2015",
+        "gpa": 1.09,
+        "courses": [
+          {
+            "name": "Maths",
+            "grade": {
+              "numeric": 1.3,
+              "letter": "A-"
+            },
+            "creditHours": 8
+          }
+          // other courses ...
+        ]
+      }
+      // other semesters ...
+    ]
+  }
+]
+```
+
+</details>
 
 #### 3.2.3 GucClient.getGrades()
 
 Returns the logged in user's semester grades: both the coursework of all current courses, as well as the midterm grades if any.
 
+<details>
+<summary>Example return value, tap to expand</summary>
+
+Containing two keys, the `midterms`, and the `courseWork`. Note that the coursework is grouped by elements (think one quiz with 2 questions) as shown below
+
+```json
+{
+  "courseWork": [
+    {
+      "name": "CSEN1066 Selected Topics in Modern Networks",
+      "courseWork": [
+        {
+          "name": "Project",
+          "elements": [
+            {
+              "name": "M1",
+              "grade": 10,
+              "maxGrade": 10,
+              "professor": "Amr Hussien Elmougy"
+            },
+            {
+              "name": "M2",
+              "grade": 20,
+              "maxGrade": 20,
+              "professor": "Amr Hussien Elmougy"
+            }
+          ]
+        }
+        // other course work ...
+      ]
+    }
+  ],
+  "midterms": [
+    {
+      "courseName": "Selected Topics in Modern Networks CSEN1066",
+      "grade": 92
+    }
+    // other midterms ...
+  ]
+}
+```
+
+</details>
+
 #### 3.2.4 GucClient.getSchedule()
 
 Returns the logged in user's current semester schedule.
+
+<details>
+<summary>Example return value, tap to expand</summary>
+
+An array of day objects (`day` & `slots` array for each day). _Free slots_ are denoted with a `null`. Therefore a day off will have **5 null** values for the slots.
+
+```json
+[
+  {
+    "day": "Saturday",
+    "slots": [
+      null,
+      null,
+      null,
+      {
+        "period": 4,
+        "type": "LAB",
+        "course": "CSEN 903",
+        "group": "P10",
+        "location": "C7.203",
+        "rawName": "9CSEN P10\tC7.203\tCSEN 903 Lab"
+      },
+      null
+    ]
+  }
+  // other days ...
+]
+```
+
+</details>
 
 ## 4. Configuration
 
