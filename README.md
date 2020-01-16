@@ -191,6 +191,19 @@ The error gets thrown whenever the system raises an exception that was not handl
 
 The error object doesn't contain any further metadata, for the sake of privacy, since such errors dump the stacktrace (as of the time of writing this).
 
+### 5.3 EvaluationRequiredError
+
+The error is thrown only from the `getTranscript` function. Whenever course evaluation is required before accessing the transcript page.
+
+It contains a `details` object in the following format:
+
+```json
+{
+  "evaluationUrl": "url/to/evaluation",
+  "courses": ["list", "of", "strings"]
+}
+```
+
 ## 6. Contribution
 
 For any feedback or issues, feel free to open an [issue](https://github.com/AbdullahKady/guc-client/issues), make sure to keep it as detailed as possible.
