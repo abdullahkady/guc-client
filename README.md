@@ -26,9 +26,11 @@ A [node](http://nodejs.org) library that provides a programmatic API for GUC stu
 
 ## 1. Introduction
 
-The library uses [puppeteer](https://github.com/puppeteer/puppeteer), a chromium _headless browser_. Since the GUC has no API (as of the time of writing this), this solution might not be the fastest, but it is the best that can be done for now.
+The library uses [puppeteer](https://github.com/puppeteer/puppeteer), a chromium _headless browser_. Since the GUC has no API (as of the time of writing this), this solution might _not be the fastest_, but it is the best that can be done for now.
 
 The implementation covers the perspective of a **student**, if any staff members would like to contribute to include their own functionalities, please check the [contribution](#6-contribution) section.
+
+**IMPORTANT**: If you're experiencing _unexpected errors_ (errors that are not defined by the package), you might want to launch your browser in a _non-headless_ mode as [described](#42-configuring-puppeteer-options). Mostly it's due to a system error, which is to be [implemented](https://github.com/AbdullahKady/guc-client/issues/2).
 
 ### 1.1. Features
 
@@ -255,7 +257,7 @@ So for example, if you would like to run the library in a non-headless mode (see
 const { GucClient } = require('guc-client');
 const puppeteer = require('puppeteer');
 const customOptions = {
-  headless: true
+  headless: false
   // any other options ...
 };
 (async () => {
